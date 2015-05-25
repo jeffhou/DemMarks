@@ -1,2 +1,2 @@
 # DemMarks
-Customized Bookmarks
+Customizable Bookmarks
