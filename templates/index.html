@@ -17,10 +17,14 @@
         <div class="grid-row">
 	    {% for bookmark in bookmarks %}
             {% if bookmark.page_id == page_id %}
-	    <a class="bookmark tb-1" href="{{ bookmark.url }}">{{ bookmark.name }}</a>
+            <div class="entire-bookmark"><a class="bookmark tb-1" href="{{ bookmark.url }}">
+            {{ bookmark.name }}
+            </a><a class="bookmark tb-1 bookmark-edit" href="{{ bookmark.url }}#edit">
+            edit
+            </a></div>
             {% endif %}
             {% endfor %}
-            <a class="bookmark tb-1 btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm" href="#">+</a>
+            <div class="entire-bookmark"><a class="bookmark bookmark-plus tb-1 btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm" href="#">+</a></div>
 
 <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
 <div class="modal-dialog">
@@ -36,7 +40,7 @@
     <input type="text" class="form-control" name="link" placeholder="Link Address">
   </div>
   <div class="form-group">
-    <label for="name">Display NAme</label>
+    <label for="name">Display Name</label>
     <input type="text" class="form-control" name="name" placeholder="Display Name">
   </div>
 	

@@ -28,16 +28,32 @@
 }
 
 .bookmark {
-    height: 100px;
+    height: 79px;
     line-height: 100px;
     font-size: 30px;
     background: #069;
     text-align: center;
     color: #eceeee;
-    margin: 0 3px 3px 0;
+    margin: 0 3px 0px 0;
     font-family: 'PT Sans',sans-serif;
-    float: left;
+    float: none;
+    display: block;
     text-decoration: none;
+}
+.bookmark-plus {
+    height: 100px;
+}
+.bookmark-edit {
+    height: 21px;
+    font-size: 12px;
+    line-height: 20px;
+    text-align: left;
+    padding-left: 10px;
+}
+.entire-bookmark {
+    display: inline;
+    float: left;
+    margin-bottom: 3px;
 }
 .tb-1 {
     width: 160px;
