@@ -34,7 +34,7 @@
     background: #069;
     text-align: center;
     color: #eceeee;
-    margin: 0 3px 0px 0;
+    margin: 0 0px 0px 0;
     font-family: 'PT Sans',sans-serif;
     float: none;
     display: block;
@@ -43,17 +43,26 @@
 .bookmark-plus {
     height: 100px;
 }
-.bookmark-edit {
+.bookmark-option {
     height: 21px;
     font-size: 12px;
     line-height: 20px;
-    text-align: left;
     padding-left: 10px;
+    padding-right: 10px;
+    width: 80px;
+    float: left;
+}
+.bookmark-edit {
+    text-align: left;
+}
+.bookmark-delete {
+    text-align: right;
 }
 .entire-bookmark {
     display: inline;
     float: left;
     margin-bottom: 3px;
+    margin-right: 3px;
 }
 .tb-1 {
     width: 160px;

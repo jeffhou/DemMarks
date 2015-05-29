@@ -19,8 +19,12 @@
             {% if bookmark.page_id == page_id %}
             <div class="entire-bookmark"><a class="bookmark tb-1" href="{{ bookmark.url }}">
             {{ bookmark.name }}
-            </a><a class="bookmark tb-1 bookmark-edit" href="{{ bookmark.url }}#edit">
+            </a>
+            <a class="bookmark bookmark-option bookmark-edit" href="{{ bookmark.url }}#edit">
             edit
+            </a>
+            <a class="bookmark bookmark-option bookmark-delete" href="/{{ page_id }}/delete_bookmark/{{ loop.index - 1 }}">
+            delete
             </a></div>
             {% endif %}
             {% endfor %}

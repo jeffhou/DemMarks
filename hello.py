@@ -18,6 +18,11 @@ def add_bookmark(page_id):
         bookmarks.append(new_bm)
     return redirect(url_for('hello'))
 
+@app.route("/<int:page_id>/delete_bookmark/<int:bookmark_id>/")
+def delete_bookmark(page_id, bookmark_id):
+    bookmarks.pop(bookmark_id)
+    return redirect(url_for('hello'))
+
 if __name__ == "__main__":
     app.debug = True
     app.run(host='0.0.0.0', port=5001)
