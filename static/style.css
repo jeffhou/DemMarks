@@ -76,7 +76,7 @@
 .small {
     font-size: 20px;
 }
-a:hover, a:visited{
+a:hover, a:visited, a:active, a:focus {
     color:#ffffff;
     text-decoration: initial;
 }

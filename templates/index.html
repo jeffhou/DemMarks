@@ -20,7 +20,7 @@
             <div class="entire-bookmark"><a class="bookmark tb-1" href="{{ bookmark.url }}">
             {{ bookmark.name }}
             </a>
-            <a class="bookmark bookmark-option bookmark-edit" href="{{ bookmark.url }}#edit">
+            <a class="bookmark bookmark-option bookmark-edit" data-toggle="modal" data-target=".bs-example-modal-sm" href="#" id="edit_{{- loop.index - 1 -}}">
             edit
             </a>
             <a class="bookmark bookmark-option bookmark-delete" href="/{{ page_id }}/delete_bookmark/{{ loop.index - 1 }}">
@@ -28,12 +28,27 @@
             </a></div>
             {% endif %}
             {% endfor %}
-            <div class="entire-bookmark"><a class="bookmark bookmark-plus tb-1 btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm" href="#">+</a></div>
-
+            <div class="entire-bookmark"><a id="plus" class="bookmark bookmark-plus tb-1 btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm" href="#">+</a></div>
+<script>
+    {% for bookmark in bookmarks %}
+        var anchor = document.getElementById("edit_{{- loop.index - 1 -}}");
+        anchor.onclick = function() {
+            document.getElementById("link").value = "{{ bookmark.url }}";
+            document.getElementById("name").value = "{{ bookmark.name }}";
+            $("#form").attr("action", "/{{ page_id }}/edit_bookmark/{{ loop.index - 1 }}/");
+        }
+    {% endfor %}
+    var plus = document.getElementById("plus");
+    plus.onclick = function() {
+        document.getElementById("link").value = "";
+        document.getElementById("name").value = "";
+        $("#form").attr("action", "/{{ page_id }}/add_bookmark/");
+    }
+</script>
 <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
 <div class="modal-dialog">
     <div class="modal-content">
-      <form action="/{{ page_id }}/add_bookmark/" method="post">
+      <form action="/{{ page_id }}/add_bookmark/" method="post" id="form">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
         <h4 class="modal-title" id="myModalLabel">Add Bookmark</h4>
@@ -41,13 +56,12 @@
       <div class="modal-body">
         <div class="form-group">
     <label for="link">Link Address</label>
-    <input type="text" class="form-control" name="link" placeholder="Link Address">
+    <input type="text" class="form-control" name="link" id="link" placeholder="Link Address">
   </div>
   <div class="form-group">
     <label for="name">Display Name</label>
-    <input type="text" class="form-control" name="name" placeholder="Display Name">
+    <input type="text" class="form-control" name="name" id="name" placeholder="Display Name">
   </div>
-	
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
