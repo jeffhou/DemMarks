@@ -46,6 +46,16 @@ def move_bookmark(moving_bookmark_id, reference_bookmark_id):
     bookmarks.insert(reference_bookmark_id, bookmarks.pop(moving_bookmark_id))
     return redirect(url_for('hello'))
 
+@app.route("/populate/<int:numBookmarks>/")
+def populate(numBookmarks):
+    for i in range(numBookmarks):
+        new_bm = {}
+        new_bm['name'] = i
+        new_bm['url'] = "#"
+        new_bm['page_id'] = 0
+        bookmarks.append(new_bm)
+    return redirect(url_for('hello'))
+
 if __name__ == "__main__":
     app.debug = True
     app.run(host='0.0.0.0', port=5001)

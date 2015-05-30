@@ -12,7 +12,16 @@
         <link rel="stylesheet" type="test/css" href="{{ url_for('static', filename='style.css') }}">
     </head>
     <body>
-        <div class="grid-row">
+        <header id="section-header" class="section section-header" style="padding-bottom: 120px;">
+          <div class="header-wrapper" style="margin-bottom:50px">
+            <nav class="top-nav" style="margin:0px;padding:0px;width:100%;background-color:#069;height:70px;margin-bottom:50px;left:300px;position:absolute;top:0px">
+            <div class="top-fill" style="background:url(http://unity3d.com/profiles/unity3d/themes/unity/images/assets/layout/shard.png) 0 0 no-repeat;height: 147px;left: -410px;position: absolute;width: 562px;">
+            </div>
+        </nav>
+
+          </div>
+        </header>
+        <div class="grid-row" style="margin-left:330px">
 	        {% for bookmark in bookmarks %}
                 {% if bookmark.page_id == page_id %}
                     <div class="entire-bookmark" draggable="true" ondragstart="drag(event)">
