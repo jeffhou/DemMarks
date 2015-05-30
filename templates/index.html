@@ -1,32 +1,32 @@
 <html>
     <head>
-	
+	    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
 
-	<!-- Optional theme -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
-
-	<!-- Latest compiled and minified JavaScript -->
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
         <link rel="stylesheet" type="test/css" href="{{ url_for('static', filename='style.css') }}">
     </head>
     <body>
         <div class="grid-row">
-	    {% for bookmark in bookmarks %}
-            {% if bookmark.page_id == page_id %}
-            <div class="entire-bookmark"><a class="bookmark tb-1" href="{{ bookmark.url }}">
-            {{ bookmark.name }}
-            </a>
-            <a class="bookmark bookmark-option bookmark-edit" data-toggle="modal" data-target=".bs-example-modal-sm" href="#" id="edit_{{- loop.index - 1 -}}">
-            edit
-            </a>
-            <a class="bookmark bookmark-option bookmark-delete" href="/{{ page_id }}/delete_bookmark/{{ loop.index - 1 }}">
-            delete
-            </a></div>
-            {% endif %}
+	        {% for bookmark in bookmarks %}
+                {% if bookmark.page_id == page_id %}
+                    <div class="entire-bookmark">
+                        <a class="bookmark tb-1" href="{{ bookmark.url }}">
+                            {{ bookmark.name }}
+                        </a>
+                        <a class="bookmark bookmark-option bookmark-edit" data-toggle="modal" data-target=".bs-example-modal-sm" href="#" id="edit_{{- loop.index - 1 -}}">
+                            edit
+                        </a>
+                        <a class="bookmark bookmark-option bookmark-delete" href="/{{ page_id }}/delete_bookmark/{{ loop.index - 1 }}">
+                            delete
+                        </a>
+                    </div>
+                {% endif %}
             {% endfor %}
             <div class="entire-bookmark"><a id="plus" class="bookmark bookmark-plus tb-1 btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm" href="#">+</a></div>
 <script>
