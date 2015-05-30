@@ -15,8 +15,8 @@
         <div class="grid-row">
 	        {% for bookmark in bookmarks %}
                 {% if bookmark.page_id == page_id %}
-                    <div class="entire-bookmark">
-                        <a class="bookmark tb-1" href="{{ bookmark.url }}">
+                    <div class="entire-bookmark" draggable="true" ondragstart="drag(event)">
+                        <a class="bookmark tb-1" href="{{ bookmark.url }}" name="bookmark_{{ loop.index - 1 }}" ondrop="drop(event)" ondragover="allowDrop(event)">
                             {{ bookmark.name }}
                         </a>
                         <a class="bookmark bookmark-option bookmark-edit" data-toggle="modal" data-target=".bs-example-modal-sm" href="#" id="edit_{{- loop.index - 1 -}}">
@@ -28,7 +28,9 @@
                     </div>
                 {% endif %}
             {% endfor %}
-            <div class="entire-bookmark"><a id="plus" class="bookmark bookmark-plus tb-1 btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm" href="#">+</a></div>
+            <div class="entire-bookmark">
+                <a id="plus" class="bookmark bookmark-plus tb-1 btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm" href="#" name="bookmark_{{bookmarks|length}}"  ondrop="drop(event)" ondragover="allowDrop(event)">+</a>
+            </div>
 <script>
     {% for bookmark in bookmarks %}
         var anchor = document.getElementById("edit_{{- loop.index - 1 -}}");
@@ -36,13 +38,25 @@
             document.getElementById("link").value = "{{ bookmark.url }}";
             document.getElementById("name").value = "{{ bookmark.name }}";
             $("#form").attr("action", "/{{ page_id }}/edit_bookmark/{{ loop.index - 1 }}/");
-        }
+        } 
     {% endfor %}
     var plus = document.getElementById("plus");
     plus.onclick = function() {
         document.getElementById("link").value = "";
         document.getElementById("name").value = "";
         $("#form").attr("action", "/{{ page_id }}/add_bookmark/");
+    }
+    function allowDrop(ev) {
+        ev.preventDefault();
+    }
+    function drag(ev) {
+        ev.dataTransfer.setData("text", ev.target.name);
+    }
+    function drop(ev) {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("text");
+        window.location.href = "/move/" + data.substring(9) + "/" + ev.target.name.substring(9) + "/";
+        //ev.target.appendChild(document.getElementById(data));
     }
 </script>
 <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
